@@ -1,0 +1,243 @@
+- case_id: drafting_extract_clauses
+  tool_id: drafting.extract_clauses
+  legal_basis:
+    - drafting-clause-keep-structure
+  input:
+    document_text: "يتضمن المستند بند السداد وبند الإنهاء بصورة موجزة."
+    document_type: "اتفاقية خدمات"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.drafting.clause_extraction_baseline
+    list_contains:
+      extracted_clause_types:
+        - payment
+        - termination
+      legal_reference_source_ids:
+        - drafting_clause_extraction_internal_standard
+      legal_reference_rule_ids:
+        - drafting-clause-boundaries-must-follow-text
+    list_length_at_least:
+      clauses: 2
+    finding_categories_contains:
+      - clause_extraction
+
+- case_id: legal_extract_clauses
+  tool_id: legal.extract_clauses
+  legal_basis:
+    - atomic-extraction-anchor-to-explicit-text
+  input:
+    document_text: "يتضمن المستند بند السداد وبند الإنهاء بصورة موجزة."
+    document_type: "اتفاقية خدمات"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.legal.extraction_baseline
+    list_contains:
+      extracted_clause_types:
+        - payment
+        - termination
+      legal_reference_rule_ids:
+        - atomic-extraction-anchor-to-explicit-text
+    list_length_at_least:
+      clauses: 2
+    finding_categories_contains:
+      - clause_extraction
+
+- case_id: legal_extract_parties
+  tool_id: legal.extract_parties
+  legal_basis:
+    - atomic-extraction-anchor-to-explicit-text
+  input:
+    document_text: "اتفق الطرف الأول شركة ألف مع الطرف الثاني شركة باء."
+    document_type: "اتفاقية خدمات"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.legal.extraction_baseline
+    list_contains:
+      legal_reference_source_ids:
+        - sa_atomic_extraction_internal_standard
+      legal_reference_rule_ids:
+        - atomic-extraction-anchor-to-explicit-text
+    list_length_at_least:
+      parties: 2
+    finding_categories_contains:
+      - party_identification
+
+- case_id: legal_extract_dates
+  tool_id: legal.extract_dates
+  legal_basis:
+    - atomic-extraction-keep-source-excerpts
+  input:
+    document_text: "يبدأ نفاذ الاتفاقية في 1 يناير 2026 ويتم السداد خلال 15 يومًا."
+    document_type: "اتفاقية خدمات"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.legal.extraction_baseline
+    list_contains:
+      legal_reference_rule_ids:
+        - atomic-extraction-keep-source-excerpts
+    list_length_at_least:
+      dates: 2
+    finding_categories_contains:
+      - date_extraction
+
+- case_id: legal_extract_amounts
+  tool_id: legal.extract_amounts
+  legal_basis:
+    - atomic-extraction-no-hallucinated-legal-meaning
+  input:
+    document_text: "يلتزم الطرف الأول بسداد 25,000 ريال وتضاف ضريبة قيمة مضافة 3,750 ريال."
+    document_type: "اتفاقية خدمات"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.legal.extraction_baseline
+    list_contains:
+      legal_reference_rule_ids:
+        - atomic-extraction-no-hallucinated-legal-meaning
+    list_length_at_least:
+      amounts: 2
+    finding_categories_contains:
+      - amount_extraction
+
+- case_id: legal_extract_obligations
+  tool_id: legal.extract_obligations
+  legal_basis:
+    - atomic-extraction-anchor-to-explicit-text
+  input:
+    document_text: "يلتزم الطرف الثاني بتنفيذ الأعمال التقنية ويلتزم الطرف الأول بسداد المقابل خلال 15 يومًا."
+    document_type: "اتفاقية خدمات"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.legal.extraction_baseline
+    list_length_at_least:
+      obligations: 2
+    finding_categories_contains:
+      - obligation_extraction
+
+- case_id: legal_extract_termination_terms
+  tool_id: legal.extract_termination_terms
+  legal_basis:
+    - atomic-extraction-concise-summary
+  input:
+    document_text: "يجوز لأي طرف إنهاء العقد عند الإخلال الجوهري بعد إشعار مدته 30 يومًا."
+    document_type: "اتفاقية خدمات"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.legal.extraction_baseline
+    list_length_at_least:
+      termination_terms: 1
+    list_contains:
+      legal_reference_rule_ids:
+        - atomic-extraction-concise-summary
+    finding_categories_contains:
+      - termination_term
+
+- case_id: legal_extract_dispute_resolution
+  tool_id: legal.extract_dispute_resolution
+  legal_basis:
+    - atomic-extraction-keep-source-excerpts
+  input:
+    document_text: "تحال النزاعات بعد التفاوض الودي إلى التحكيم في الرياض وفق نظام التحكيم السعودي."
+    document_type: "اتفاقية خدمات"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.legal.extraction_baseline
+    list_length_at_least:
+      dispute_resolution_terms: 1
+    finding_categories_contains:
+      - dispute_resolution
+
+- case_id: legal_classify_document_type
+  tool_id: legal.classify_document_type
+  legal_basis:
+    - atomic-extraction-no-hallucinated-legal-meaning
+  input:
+    document_text: "ينظم هذا المستند نطاق الخدمات والمقابل المالي وآلية إنهاء العلاقة."
+    document_type: "مستند غير مصنف"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.legal.extraction_baseline
+      primary_document_type: service_agreement
+      confidence_band: high
+    finding_categories_contains:
+      - document_classification
+
+- case_id: contracts_risk_score
+  tool_id: contracts.risk_score
+  legal_basis:
+    - contract-risk-score-use-clear-scale
+  input:
+    contract_text: "يتم السداد لاحقًا ويجوز الإنهاء عند الحاجة."
+    contract_type: "service_agreement"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.contracts.risk_scoring_baseline
+      risk_level: high
+    list_contains:
+      legal_reference_source_ids:
+        - contracts_risk_scoring_internal_standard
+      legal_reference_rule_ids:
+        - contracts-risk-separate-score-from-judgment
+    list_length_at_least:
+      mitigation_priorities: 2
+    finding_categories_contains:
+      - contract_risk
+
+- case_id: compliance_pdpl_check
+  tool_id: compliance.pdpl_check
+  legal_basis:
+    - pdpl-check-separate-met-vs-missing
+  input:
+    document_text: "توضح السياسة أغراض المعالجة دون آلية واضحة لطلبات أصحاب البيانات."
+    processing_context: "منصة خدمات رقمية"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.compliance.pdpl_check_baseline
+    list_contains:
+      legal_reference_rule_ids:
+        - pdpl-check-identify-covered-vs-missing-elements
+    list_length_at_least:
+      required_actions: 2
+    finding_categories_contains:
+      - privacy_obligation
+
+- case_id: compliance_vat_check
+  tool_id: compliance.vat_check
+  legal_basis:
+    - vat-check-separate-price-vs-tax
+  input:
+    document_text: "المقابل 25,000 ريال مع إضافة ضريبة القيمة المضافة دون بيان ما إذا كانت الأسعار شاملة."
+    transaction_type: "service_fee"
+    vat_rate: 15.0
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.compliance.vat_check_baseline
+    list_contains:
+      legal_reference_rule_ids:
+        - vat-check-surface-tax-treatment-explicitly
+    list_length_at_least:
+      required_actions: 2
+    finding_categories_contains:
+      - tax_compliance
+
+- case_id: labor_generate_contract
+  tool_id: labor.generate_contract
+  legal_basis:
+    - labor-contract-state-core-rights-clearly
+  input:
+    employer_name: "شركة ألف"
+    employee_name: "محمد أحمد"
+    job_title: "محلل أعمال"
+    monthly_salary: 12000.0
+    contract_type: "indefinite"
+    work_location: "الرياض"
+  expected:
+    path_equals:
+      legal_reference_profile_id: sa.labor.contract_generation_baseline
+    list_contains:
+      legal_reference_rule_ids:
+        - labor-contract-include-core-employment-anchors
+    list_length_at_least:
+      included_clauses: 5
+      configurable_points: 4
+    finding_categories_contains:
+      - employment_contract

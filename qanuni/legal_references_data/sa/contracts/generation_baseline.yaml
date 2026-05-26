@@ -1,0 +1,39 @@
+profile_id: "sa.contracts.generation_baseline"
+title: "حزمة خط الأساس لإنشاء العقود السعودية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "contracts.generate_nda"
+  - "contracts.generate_mou"
+application_instructions: >
+  استخدم هذه القواعد كضوابط ملزمة عند إنشاء العقود. أنشئ مسودات نافعة تجاريا،
+  وحافظ على المقصد التجاري المطلوب، وبيّن الفراغات والافتراضات الناقصة بدل اختراعها ضمنيا.
+sources:
+  - source_id: "sa_contract_generation_internal_standard"
+    title: "معيار Qanuni لإنشاء العقود"
+    authority: "خط الأساس التحريري المنسق داخل Qanuni"
+    citation: "نسخة 1 من خط الأساس لإنشاء العقود"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "contracts-mark-missing-assumptions"
+        priority: "mandatory"
+        directive: >
+          إذا غابت وقائع تجارية أساسية، فميّزها بوضوح كافتراضات أو خيارات أو مواضع تحتاج إكمالًا
+          داخل المسودة أو الملاحظات.
+        applicability: "جميع اتفاقيات عدم الإفصاح ومذكرات التفاهم المنشأة."
+        rationale: "الافتراضات المخفية تصنع عدم تطابق قانوني وتجاري."
+      - rule_id: "contracts-preserve-requested-intent"
+        priority: "mandatory"
+        directive: >
+          حافظ على المقصد التجاري والهيكل المطلوبين من المستخدم ما لم يؤد ذلك إلى تناقض صياغي ظاهر
+          أو عدم اتساق داخلي.
+        applicability: "جميع البنود المنشأة."
+        rationale: "المسودة ينبغي أن تخدم الصفقة لا أن تعيد تشكيلها دون مبرر."
+      - rule_id: "contracts-avoid-false-enforceability-claims"
+        priority: "high"
+        directive: >
+          تجنب الادعاء بأن بندا ما مضمون النفاذ، وبدلًا من ذلك اذكر القيود المهمة أو المواضع
+          التي قد تستدعي مراجعة قانونية بشرية.
+        applicability: "جميع الملاحظات القانونية والتنبيهات."
+        rationale: "لا ينبغي للمنتج أن يبالغ في الوعد باليقين القانوني."

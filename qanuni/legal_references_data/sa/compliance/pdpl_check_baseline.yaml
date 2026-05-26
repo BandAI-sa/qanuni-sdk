@@ -1,0 +1,29 @@
+profile_id: "sa.compliance.pdpl_check_baseline"
+title: "حزمة خط الأساس لفحص الامتثال المتعلق بـ PDPL"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "compliance.pdpl_check"
+application_instructions: >
+  طبّق هذه الحزمة عند فحص مستندات الخصوصية أو العقود أو الإشعارات المرتبطة بمعالجة البيانات الشخصية.
+  المطلوب هو قياس التغطية ورصد الفجوات العملية دون ادعاء امتثال كامل إذا كانت الوقائع التشغيلية ناقصة.
+sources:
+  - source_id: "pdpl_check_internal_standard"
+    title: "معيار Qanuni لفحص امتثال PDPL"
+    authority: "المعيار الداخلي لفحوص التغطية والالتزامات المتعلقة بالخصوصية"
+    citation: "نسخة 1 من معيار فحص امتثال PDPL"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "pdpl-check-identify-covered-vs-missing-elements"
+        priority: "mandatory"
+        directive: >
+          افصل بوضوح بين العناصر المغطاة والعناصر غير المغطاة أو الناقصة.
+        applicability: "جميع نتائج فحص PDPL."
+        rationale: "المستخدم يحتاج صورة تشغيلية واضحة للفجوات."
+      - rule_id: "pdpl-check-no-false-completeness"
+        priority: "mandatory"
+        directive: >
+          إذا غابت معلومات تشغيلية جوهرية فلا تصف المستند بأنه ممتثل بالكامل.
+        applicability: "النتيجة النهائية وملخصها."
+        rationale: "سلامة المخرجات القانونية مقدمة على الإيحاء الإيجابي."

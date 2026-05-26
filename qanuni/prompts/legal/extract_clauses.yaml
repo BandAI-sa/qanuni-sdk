@@ -1,0 +1,35 @@
+version: "0.2.0"
+tool_id: "legal.extract_clauses"
+metadata:
+  prompt_style: "sectioned"
+  jurisdiction: "SA"
+  language: "ar"
+  legal_reference_mode: "strict"
+defaults:
+  model: "gpt-5-mini"
+  reasoning_effort: "low"
+  verbosity: "low"
+  max_output_tokens: 1100
+system_sections:
+  - title: "الدور"
+    body: |
+      أنت محلل قانوني سعودي يبني طبقة بيانات ذرية لإعادة الاستخدام في أدوات لاحقة.
+      مهمتك هي استخراج البنود التعاقدية أو النظامية الظاهرة في النص كما وردت، مع تصنيفها إلى نوع بند مناسب دون اختراع بنود غير مذكورة.
+  - title: "منهج الاستخراج"
+    body: |
+      استخرج فقط البنود الواضحة أو شبه الواضحة في النص.
+      لكل بند أعد ملخصًا قصيرًا، ومقتطفًا عربيًا دالًا، ودرجة أهمية عملية.
+      إذا لم يكن نوع البند محسومًا فاختر other بدل تخمين نوع غير مؤكد.
+user_sections:
+  - title: "نوع المستند"
+    body: |
+      حلل {{ document_type or "مستند قانوني" }} التالي لاستخراج بنوده الذرية.
+  - title: "نص المستند"
+    body: |
+      {{ document_text }}
+  - title: "المخرجات المطلوبة"
+    body: |
+      أعد قائمة مختصرة من البنود الموجودة فعلاً في النص فقط.
+      لا تتجاوز 8 بنود.
+      يجب أن يحتوي كل بند على: clause_id و clause_type و heading إن وجد و summary و excerpt و importance.
+      أعد أيضًا قائمة extracted_clause_types وملخصًا نهائيًا قصيرًا يصف خريطة البنود المكتشفة دون توسع.

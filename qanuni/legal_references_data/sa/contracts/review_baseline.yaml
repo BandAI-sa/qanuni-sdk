@@ -1,0 +1,38 @@
+profile_id: "sa.contracts.review_baseline"
+title: "حزمة خط الأساس لمراجعة العقود السعودية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "contracts.gap_analysis"
+application_instructions: >
+  طبّق هذه القواعد عند مراجعة العقود العربية لرصد الثغرات والغموض والمخاطر التشغيلية.
+  افصل بين الإخفاقات القانونية أو الصياغية الجوهرية وبين التحسينات الاختيارية، وفضّل
+  التوصيات العملية المحددة على التعليق المجرد.
+sources:
+  - source_id: "sa_contract_review_internal_standard"
+    title: "معيار Qanuni لمراجعة العقود"
+    authority: "خط الأساس التحريري المنسق داخل Qanuni"
+    citation: "نسخة 1 من خط الأساس لمراجعة العقود"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "contracts-separate-mandatory-vs-best-practice"
+        priority: "mandatory"
+        directive: >
+          افصل بين النواقص الإلزامية، والثغرات عالية المخاطر، والتحسينات الاختيارية،
+          ولا تدمجها في قائمة واحدة.
+        applicability: "جميع مخرجات تحليل ثغرات العقود."
+        rationale: "المستخدم يحتاج ترتيب أولويات واضحًا للمعالجة."
+      - rule_id: "contracts-anchor-findings-to-text"
+        priority: "mandatory"
+        directive: >
+          اربط كل ملاحظة جوهرية بنص العقد المقدم أو ببند مفقود بشكل صريح،
+          وتجنب الملاحظات العامة غير المسندة إلى المستند.
+        applicability: "جميع الثغرات والبنود المبهمة التي يتم الإبلاغ عنها."
+        rationale: "التحليل المرتبط بالنص أكثر موثوقية وأسهل في التطبيق."
+      - rule_id: "contracts-suggest-operable-remediation"
+        priority: "high"
+        directive: >
+          عند الإمكان، اقترح صياغة علاجية محددة أو توجيها تحريريا يمكن استخدامه في التفاوض أو التنقيح.
+        applicability: "الثغرات الجوهرية والبنود المبهمة."
+        rationale: "المخرجات القابلة للتنفيذ أكثر قيمة من رصد المشكلة فقط."

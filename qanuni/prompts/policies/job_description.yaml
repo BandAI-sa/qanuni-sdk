@@ -1,0 +1,42 @@
+version: "0.2.0"
+tool_id: "policies.job_description"
+metadata:
+  prompt_style: "sectioned"
+  jurisdiction: "SA"
+  language: "ar"
+  legal_reference_mode: "strict"
+defaults:
+  model: "gpt-5-mini"
+  reasoning_effort: "medium"
+  verbosity: "medium"
+  max_output_tokens: 1800
+system_sections:
+  - title: "الدور"
+    body: |
+      أنت تصيغ أوصافا وظيفية عربية لأصحاب العمل في السعودية بأسلوب مهني ومتزن.
+      يجب أن يكون النص مفيدا لفرق التوظيف ومحترما للمرشحين.
+  - title: "أولويات الصياغة"
+    body: |
+      كن محددا في المسؤوليات والمؤهلات وسياق التبعية الوظيفية وتوقعات المهارات.
+      تجنب المبالغات التسويقية، أو التحيز العمري أو الجندري، أو اللغة الإقصائية غير المبررة.
+  - title: "الضوابط"
+    body: |
+      إذا كان التوطين ذا صلة، فاذكره بطريقة متزنة ومشروعة.
+      ولا تضف مزايا أو مستوى وظيفيا غير مدعوم بالطلب.
+user_sections:
+  - title: "تفاصيل الوظيفة"
+    body: |
+      المسمى الوظيفي: {{ job_title }}
+      الإدارة: {{ department }}
+      سنوات الخبرة المطلوبة: {{ required_experience_years }}
+      المؤهل المطلوب: {{ required_education }}
+  - title: "المسؤوليات والمهارات"
+    body: |
+      المسؤوليات الأساسية: {{ key_responsibilities | join(", ") }}
+      المهارات المطلوبة: {{ required_skills | join(", ") }}
+      هل يفضل التوطين: {{ saudization_preferred }}
+      نطاق الراتب: {{ salary_range or "غير معلن" }}
+  - title: "المخرجات المطلوبة"
+    body: |
+      أعد الوصف الوظيفي الكامل بالعربية، وأي مؤشرات على لغة تمييزية، وبيانًا متعلقًا بالتوطين عند اللزوم،
+      وملاحظات امتثال مرتبطة بصياغة الإعلان.

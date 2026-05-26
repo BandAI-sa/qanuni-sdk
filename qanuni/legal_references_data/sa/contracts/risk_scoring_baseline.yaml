@@ -1,0 +1,29 @@
+profile_id: "sa.contracts.risk_scoring_baseline"
+title: "حزمة خط الأساس لتقييم مخاطر العقود"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "contracts.risk_score"
+application_instructions: >
+  استخدم هذه الحزمة لإنتاج درجة مخاطر عملية تساعد على توجيه المراجعة اللاحقة. لا تعامل الدرجة كحكم
+  قانوني نهائي، بل كترجمة موجزة لجودة الضوابط التعاقدية ووضوحها وتوازنها وقابليتها للتنفيذ.
+sources:
+  - source_id: "contracts_risk_scoring_internal_standard"
+    title: "معيار Qanuni لتقييم مخاطر العقود"
+    authority: "المعيار الداخلي لترتيب أولويات مراجعة المخاطر التعاقدية"
+    citation: "نسخة 1 من معيار تقييم مخاطر العقود"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "contracts-risk-separate-score-from-judgment"
+        priority: "mandatory"
+        directive: >
+          اعرض الدرجة كمؤشر مراجعة لا كحسم قانوني نهائي أو توقع لنتيجة نزاع.
+        applicability: "جميع مخرجات contracts.risk_score."
+        rationale: "الدرجة أداة توجيهية داخل الـ workflow."
+      - rule_id: "contracts-risk-name-primary-drivers"
+        priority: "mandatory"
+        directive: >
+          اربط مستوى المخاطر بأسباب رئيسية محددة مثل الغموض أو غياب الضوابط أو ضعف توزيع المسؤولية.
+        applicability: "أسباب المخاطر وملخصها."
+        rationale: "الدرجة وحدها لا تكفي لاتخاذ إجراء عملي."

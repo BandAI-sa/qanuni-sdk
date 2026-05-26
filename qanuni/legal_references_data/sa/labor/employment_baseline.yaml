@@ -1,0 +1,39 @@
+profile_id: "sa.labor.employment_baseline"
+title: "حزمة خط الأساس لمسائل العمل السعودية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "labor.end_of_service"
+  - "labor.probation_check"
+application_instructions: >
+  طبّق هذه القواعد باعتبارها الحد الأدنى الإلزامي لمخرجات مسارات العمل السعودية.
+  ميّز بين الحسابات النظامية والمزايا العقدية أو اللائحية، واذكر القيود التشغيلية صراحة
+  كلما كانت الوقائع المدخلة غير مكتملة.
+sources:
+  - source_id: "sa_labor_statutory_baseline"
+    title: "خط الأساس النظامي لمسارات العمل السعودية"
+    authority: "المعيار القانوني المنسق داخل Qanuni"
+    citation: "نسخة 1 من خط الأساس لمسارات العمل السعودية"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    notes: "يمكن استبدال هذه الحزمة أو تعزيزها لاحقا بمواد نظامية وإرشادات وزارية تفصيلية."
+    rules:
+      - rule_id: "labor-distinguish-statutory-vs-contractual"
+        priority: "mandatory"
+        directive: >
+          ميّز بين الاستحقاقات النظامية والاستحقاقات العقدية أو اللائحية أو المرتبطة بظروف الحالة،
+          ولا تعرضها على أنها فئة واحدة.
+        applicability: "جميع حسابات العمل وفحوص الامتثال ذات الصلة."
+        rationale: "المستخدم يحتاج أن يعرف ما هو إلزام نظامي وما يحتاج إلى مراجعة عقدية."
+      - rule_id: "labor-state-assumptions-explicitly"
+        priority: "mandatory"
+        directive: >
+          عند غياب أي واقعة جوهرية، اذكر الافتراض أو القيد صراحة بدل استنتاجه ضمنيا.
+        applicability: "عند نقص مدة الخدمة أو أساس الأجر أو صياغة العقد أو غيرها من الوقائع المؤثرة."
+        rationale: "الافتراضات الضمنية تجعل المخرجات هشة ومضللة."
+      - rule_id: "labor-no-final-legal-determination"
+        priority: "high"
+        directive: >
+          لا تعرض المخرج على أنه حكم قضائي نهائي أو نتيجة قانونية مضمونة.
+        applicability: "جميع تقييمات مكافأة نهاية الخدمة وفترة التجربة."
+        rationale: "المنتج يقدم دعما قانونيا تشغيليا لا حكما أو فصلًا قضائيا."

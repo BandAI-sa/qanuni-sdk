@@ -1,0 +1,30 @@
+profile_id: "sa.drafting.clause_extraction_baseline"
+title: "حزمة خط الأساس لاستخراج بنية البنود من الصياغة القانونية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "drafting.extract_clauses"
+application_instructions: >
+  طبّق هذه القواعد عند تحليل بنية النصوص القانونية العربية بغرض استخراج البنود القابلة لإعادة الاستخدام
+  في المراجعة أو إعادة الصياغة. ركز على حدود البند ومضمونه العملي وارتباطه بالنص كما ورد، دون توسع
+  في تفسير قانوني لا تدعمه العبارة نفسها.
+sources:
+  - source_id: "drafting_clause_extraction_internal_standard"
+    title: "معيار Qanuni لاستخراج بنية البنود"
+    authority: "المعيار التحريري الداخلي لبناء طبقة drafting composable"
+    citation: "نسخة 1 من معيار استخراج بنية البنود"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "drafting-clause-boundaries-must-follow-text"
+        priority: "mandatory"
+        directive: >
+          لا تفصل بندًا أو تدمج بندين إلا إذا كان الفصل أو الدمج ظاهرًا من بنية النص أو معناه المباشر.
+        applicability: "جميع مخرجات drafting.extract_clauses."
+        rationale: "طبقة drafting يجب أن تحافظ على البنية الأصلية بقدر الإمكان."
+      - rule_id: "drafting-clause-summaries-stay-operational"
+        priority: "mandatory"
+        directive: >
+          اجعل ملخص كل بند تشغيليًا ومقتضبًا ويصف مضمونه العملي دون إعادة كتابة النص كاملًا.
+        applicability: "ملخصات البنود."
+        rationale: "الغرض هو إعادة الاستخدام في المراجعة والتحرير اللاحق."

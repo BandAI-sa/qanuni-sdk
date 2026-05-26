@@ -1,0 +1,37 @@
+profile_id: "sa.compliance.pdpl_baseline"
+title: "حزمة خط الأساس لسياسات الخصوصية وحماية البيانات"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "compliance.generate_privacy_policy"
+application_instructions: >
+  طبّق هذه الحزمة باعتبارها الحد الأدنى لصياغة سياسة الخصوصية. غطِّ الإفصاحات التشغيلية
+  التي تحتاجها فرق المنتجات فعلا، لكن لا تدّع الامتثال الكامل إذا كانت الوقائع التشغيلية
+  أو النقلات الدولية أو مدد الاحتفاظ أو قنوات الشكاوى غير مؤكدة.
+sources:
+  - source_id: "sa_pdpl_internal_standard"
+    title: "معيار Qanuni لصياغة سياسات الخصوصية"
+    authority: "خط الأساس الامتثالي المنسق داخل Qanuni"
+    citation: "نسخة 1 من خط الأساس لسياسات الخصوصية"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "pdpl-identify-data-and-purpose"
+        priority: "mandatory"
+        directive: >
+          حدِّد فئات البيانات ذات الصلة وأغراض المعالجة بطريقة عملية واضحة قابلة للفهم.
+        applicability: "جميع مخرجات سياسات الخصوصية."
+        rationale: "المستخدم يحتاج سياسة تعكس أنشطة المعالجة الفعلية."
+      - rule_id: "pdpl-disclose-rights-and-contact-path"
+        priority: "mandatory"
+        directive: >
+          ضمّن قسمًا لحقوق الأفراد ومسار تواصل أو طلبات واقعيًا يتعلق بالخصوصية ما لم يصرح
+          المستخدم صراحة بعدم وجود مثل هذه القناة.
+        applicability: "جميع مخرجات سياسات الخصوصية."
+        rationale: "الحقوق لا تكون ذات قيمة دون مسار تشغيلي واضح."
+      - rule_id: "pdpl-no-false-compliance-claim"
+        priority: "mandatory"
+        directive: >
+          لا تنص أو توحي بأن السياسة تضمن الامتثال الكامل إذا ظلت الوقائع التشغيلية الجوهرية غير معلومة.
+        applicability: "جميع سياسات الخصوصية وملاحظاتها."
+        rationale: "مسودة السياسة لا تغني عن أدلة التطبيق الفعلي."

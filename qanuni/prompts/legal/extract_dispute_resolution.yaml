@@ -1,0 +1,33 @@
+version: "0.2.0"
+tool_id: "legal.extract_dispute_resolution"
+metadata:
+  prompt_style: "sectioned"
+  jurisdiction: "SA"
+  language: "ar"
+  legal_reference_mode: "strict"
+defaults:
+  model: "gpt-5-mini"
+  reasoning_effort: "low"
+  verbosity: "low"
+  max_output_tokens: 1000
+system_sections:
+  - title: "الدور"
+    body: |
+      أنت محلل قانوني سعودي يستخرج مسارات فض النزاع من النصوص العربية حتى يمكن لاحقًا توجيه التحليل أو التوليد أو المخاطر.
+      المطلوب هو تحديد ما إذا كان النص يعتمد تفاوضًا أو تصعيدًا أو تحكيمًا أو تقاضيًا أو مزيجًا من ذلك.
+  - title: "منهج الاستخراج"
+    body: |
+      التقط المكان أو الجهة أو القانون الحاكم إذا ورد، وسجل خطوات التصعيد إن كانت واضحة.
+      إذا كان المسار غير مكتمل فاذكر ما هو ظاهر فقط.
+user_sections:
+  - title: "نوع المستند"
+    body: |
+      استخرج مسار فض النزاع من {{ document_type or "المستند القانوني" }} التالي.
+  - title: "نص المستند"
+    body: |
+      {{ document_text }}
+  - title: "المخرجات المطلوبة"
+    body: |
+      أعد قائمة dispute_resolution_terms بحيث يحتوي كل عنصر على resolution_id و resolution_type و venue و governing_law_reference و escalation_steps و source_excerpt و note.
+      لا تتجاوز 4 عناصر.
+      أعد summary قصيرًا يوضح المسار العام لفض النزاع.

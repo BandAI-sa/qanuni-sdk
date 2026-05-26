@@ -1,0 +1,132 @@
+cases:
+  - case_id: workflow_contract_review
+    surface_id: workflow.contract_review
+    legal_basis:
+      - sa/contracts/review_baseline.yaml
+      - sa/contracts/risk_scoring_baseline.yaml
+    payload:
+      document_text: |
+        يلتزم الطرف الثاني بتنفيذ الأعمال ويتم السداد لاحقًا وفق ما يراه الطرف الأول مناسبًا،
+        ويجوز إنهاء العقد عند الحاجة، وفي حال النزاع تتم التسوية وديًا ثم التحكيم.
+      contract_type: service_agreement
+      include_redlines: true
+    expected:
+      path_equals:
+        risk_level: high
+      number_at_least:
+        risk_score: 1
+      list_length_at_least:
+        state.steps: 10
+        amendment_recommendations: 2
+        optional_redlines: 1
+      path_not_empty:
+        - executive_summary
+        - state.legal_reference_rule_ids
+
+  - case_id: workflow_employment_review
+    surface_id: workflow.employment_review
+    legal_basis:
+      - sa/labor/employment_baseline.yaml
+    payload:
+      document_text: |
+        يعمل الموظف لدى الشركة ويتقاضى راتبًا شهريًا، وتبلغ فترة التجربة 120 يومًا.
+      contract_type: indefinite
+      probation_days: 120
+      extension_in_writing: false
+      monthly_salary: 10000
+      years_of_service: 4
+      termination_reason: resignation
+    expected:
+      path_equals:
+        probation_status: violation
+      list_length_at_least:
+        employment_risks: 1
+        recommended_follow_ups: 1
+        state.steps: 5
+      path_not_empty:
+        - executive_summary
+        - state.legal_reference_rule_ids
+
+  - case_id: workflow_privacy_compliance_review
+    surface_id: workflow.privacy_compliance_review
+    legal_basis:
+      - sa/compliance/pdpl_check_baseline.yaml
+      - sa/compliance/pdpl_baseline.yaml
+    payload:
+      document_text: |
+        نجمع بيانات العملاء ونشارك بعض البيانات مع مزودي خدمة خارجيين.
+      processing_context: تطبيق توصيل
+      cross_border_transfers: true
+      generate_policy_draft: true
+      company_name: شركة ألف
+      service_type: منصة تقنية
+      data_collected:
+        - الاسم
+        - رقم الجوال
+      data_purposes:
+        - تشغيل الخدمة
+        - الدعم الفني
+      third_party_sharing: true
+      international_transfers: true
+    expected:
+      number_at_least:
+        compliance_score: 1
+      list_length_at_least:
+        key_gaps: 1
+        remediation_priorities: 1
+        state.steps: 3
+      path_not_empty:
+        - executive_summary
+        - policy_draft_text
+        - state.legal_reference_rule_ids
+
+  - case_id: workflow_pre_litigation_notice
+    surface_id: workflow.pre_litigation_notice
+    legal_basis:
+      - sa/compliance/legal_notice_baseline.yaml
+      - sa/contracts/review_baseline.yaml
+    payload:
+      support_document_text: |
+        يلتزم العميل بالسداد خلال خمسة عشر يومًا من الفاتورة وقد تأخر عن السداد.
+      support_document_type: عقد خدمات
+      contract_type: service_agreement
+      sender_name: شركة ألف
+      recipient_name: شركة باء
+      claim_type: مستحقات تعاقدية
+      claim_amount: 85000
+      incident_description: تأخر في سداد مستحقات عقد خدمات تقنية.
+      deadline_days: 7
+      threat_of_action: سيتم اتخاذ الإجراءات القانونية المناسبة عند عدم السداد.
+    expected:
+      path_not_empty:
+        - executive_summary
+        - demand_letter_text
+        - state.legal_reference_rule_ids
+      list_length_at_least:
+        claim_support_summary: 1
+        negotiation_points: 1
+        state.steps: 4
+
+  - case_id: workflow_policy_generation_review
+    surface_id: workflow.policy_generation_review
+    legal_basis:
+      - sa/policies/hr_baseline.yaml
+    payload:
+      policy_kind: hr_policy
+      policy_type: الحضور والانصراف
+      company_name: شركة ألف
+      industry: تقنية
+      employee_count: 200
+      custom_requirements:
+        - تحديد آلية العمل المرن
+    expected:
+      path_equals:
+        policy_kind: hr_policy
+      path_not_empty:
+        - executive_summary
+        - generated_text
+        - state.legal_reference_rule_ids
+      list_length_at_least:
+        review_notes: 1
+        follow_up_actions: 1
+        state.steps: 3

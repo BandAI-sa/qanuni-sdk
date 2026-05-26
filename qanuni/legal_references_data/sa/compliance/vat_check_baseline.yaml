@@ -1,0 +1,29 @@
+profile_id: "sa.compliance.vat_check_baseline"
+title: "حزمة خط الأساس لفحص الامتثال المرتبط بضريبة القيمة المضافة"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "compliance.vat_check"
+application_instructions: >
+  استخدم هذه الحزمة لفحص وجود الإشارات الضريبية الأساسية، ومنطق المعاملة الضريبية، ووضوح المبالغ
+  أو النسب أو المسؤولية عن الضريبة في المستند. لا تبت في المسألة الضريبية نهائيًا إذا كان السياق ناقصًا.
+sources:
+  - source_id: "vat_check_internal_standard"
+    title: "معيار Qanuni لفحص الامتثال الضريبي المرتبط بـ VAT"
+    authority: "المعيار الداخلي لفحوص التغطية الضريبية في الوثائق العربية"
+    citation: "نسخة 1 من معيار فحص VAT"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "vat-check-surface-tax-treatment-explicitly"
+        priority: "mandatory"
+        directive: >
+          اذكر المعالجة الضريبية المفهومة من النص بصياغة واضحة ومقيدة بما هو مذكور فعلاً.
+        applicability: "حقل vat_treatment والملخص."
+        rationale: "الغموض الضريبي من أكثر أسباب النزاع التشغيلي."
+      - rule_id: "vat-check-highlight-missing-tax-anchors"
+        priority: "mandatory"
+        directive: >
+          أظهر الفجوات المتعلقة بالنسبة أو المسؤولية أو آلية الفوترة أو الإشارة إلى الضريبة إذا كانت ناقصة.
+        applicability: "قائمة gaps والإجراءات المطلوبة."
+        rationale: "الهدف هو إظهار نقاط المخاطر القابلة للمعالجة."

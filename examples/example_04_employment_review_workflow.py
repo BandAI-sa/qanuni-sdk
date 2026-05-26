@@ -1,0 +1,61 @@
+"""Run the employment-review workflow with a sample Arabic employment contract."""
+
+from __future__ import annotations
+
+from _bootstrap import ensure_project_root_on_path
+from _common import (
+    build_context,
+    emit_document_excerpt,
+    emit_environment,
+    emit_model,
+    emit_observability,
+    emit_tool_catalog,
+    emit_workflow_state,
+    load_sample_document,
+    parse_standard_args,
+)
+
+ensure_project_root_on_path()
+
+
+def main() -> None:
+    """Run the employment-review workflow human-testing example.
+
+    Args:
+        None.
+
+    Returns:
+        None.
+
+    Raises:
+        RuntimeError: If live mode is requested without `OPENAI_API_KEY`.
+    """
+    args = parse_standard_args(
+        "Exercise the employment workflow with probation and end-of-service calculations."
+    )
+    context = build_context(title="Example 04 - Employment Review Workflow", args=args)
+    document_text = load_sample_document("employment_contract_ar.md")
+
+    emit_environment(context)
+    emit_tool_catalog(context.client, namespace="labor")
+    emit_tool_catalog(context.client, namespace="legal")
+    emit_document_excerpt("employment_contract_ar.md")
+
+    result = context.client.workflow.employment_review(
+        document_text=document_text,
+        document_type="employment_contract",
+        contract_type="indefinite",
+        probation_days=120,
+        extension_in_writing=False,
+        monthly_salary=10000,
+        years_of_service=2,
+        termination_reason="termination_by_employer",
+    )
+
+    emit_model("Employment-review workflow result", result)
+    emit_workflow_state(result.state)
+    emit_observability(context)
+
+
+if __name__ == "__main__":
+    main()

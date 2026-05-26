@@ -1,0 +1,30 @@
+profile_id: "sa.labor.contract_generation_baseline"
+title: "حزمة خط الأساس لتوليد عقود العمل السعودية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "labor.generate_contract"
+application_instructions: >
+  استخدم هذه الحزمة لإنتاج مسودة عقد عمل عربي متوازنة ومباشرة وقابلة للمراجعة الداخلية. يجب أن تبرز
+  البنود الأساسية، وأن تترك النقاط القابلة للتخصيص واضحة، وأن تتجنب ادعاء الكمال إذا كانت البيانات
+  المدخلة لا تكفي لتفصيل جميع الجوانب التشغيلية.
+sources:
+  - source_id: "labor_contract_generation_internal_standard"
+    title: "معيار Qanuni لتوليد عقود العمل"
+    authority: "المعيار الداخلي لصياغة عقود عمل عربية موجزة وقابلة للتشغيل"
+    citation: "نسخة 1 من معيار توليد عقود العمل"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "labor-contract-include-core-employment-anchors"
+        priority: "mandatory"
+        directive: >
+          ضمن البنود الأساسية المتعلقة بالأطراف وطبيعة الوظيفة والأجر والمكان وفترة التجربة وساعات العمل والإجازة والإنهاء.
+        applicability: "النص العقدي والقوائم المرافقة."
+        rationale: "هذه هي أعمدة المسودة التي يعتمد عليها التحرير اللاحق."
+      - rule_id: "labor-contract-mark-configurable-points"
+        priority: "mandatory"
+        directive: >
+          ميّز النقاط التي تحتاج مراجعة أو تخصيصًا داخليًا مثل البدلات والسياسات المساندة وآلية التوقيع أو الملاحق.
+        applicability: "configurable_points وcompliance_notes."
+        rationale: "المستخدم يحتاج أن يعرف ما يجب مراجعته قبل الاعتماد."

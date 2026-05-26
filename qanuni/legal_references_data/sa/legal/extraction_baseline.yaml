@@ -1,0 +1,49 @@
+profile_id: "sa.legal.extraction_baseline"
+title: "حزمة خط الأساس لاستخراج العناصر القانونية الذرية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "legal.extract_clauses"
+  - "legal.extract_parties"
+  - "legal.extract_dates"
+  - "legal.extract_amounts"
+  - "legal.extract_obligations"
+  - "legal.extract_termination_terms"
+  - "legal.extract_dispute_resolution"
+  - "legal.classify_document_type"
+application_instructions: >
+  طبّق هذه القواعد عند استخراج العناصر القانونية الأولية من أي مستند عربي ذي صلة بالسياق السعودي.
+  الهدف هو بناء عناصر قابلة لإعادة الاستخدام في workflows لاحقة، لذلك يجب أن تكون المخرجات أمينة للنص،
+  موجزة، ومسنودة إلى عبارات صريحة دون توسيع أو استنتاج قانوني غير مذكور.
+sources:
+  - source_id: "sa_atomic_extraction_internal_standard"
+    title: "معيار Qanuni لاستخراج العناصر القانونية الذرية"
+    authority: "المعيار التحريري الداخلي لبناء كائنات قانونية قابلة للتركيب"
+    citation: "نسخة 1 من معيار الاستخراج الذري"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "atomic-extraction-anchor-to-explicit-text"
+        priority: "mandatory"
+        directive: >
+          لا تستخرج بندًا أو التزامًا أو طرفًا أو تاريخًا إلا إذا كان له سند نصي صريح في المستند.
+        applicability: "جميع أدوات الاستخراج الذري."
+        rationale: "الأدوات الذرية يجب أن تكون موثوقة وقابلة لإعادة الاستخدام دون تضخيم أو تخمين."
+      - rule_id: "atomic-extraction-no-hallucinated-legal-meaning"
+        priority: "mandatory"
+        directive: >
+          إذا كان التصنيف غير محسوم من النص، فاختر قيمة عامة أو ضع الحقول التفسيرية فارغة بدل اختراع معنى قانوني.
+        applicability: "التصنيفات والحقول المعيارية في كل أداة."
+        rationale: "سلامة الـ workflow اللاحق تعتمد على منع الافتراضات غير المسندة."
+      - rule_id: "atomic-extraction-keep-source-excerpts"
+        priority: "mandatory"
+        directive: >
+          أرفق مع كل عنصر مقتطفًا عربيًا قصيرًا من النص الأصلي يثبت سبب الاستخراج.
+        applicability: "القوائم المستخرجة كلها."
+        rationale: "يسهّل هذا التحقق البشري وتمرير الدليل إلى أدوات لاحقة."
+      - rule_id: "atomic-extraction-concise-summary"
+        priority: "high"
+        directive: >
+          اجعل الملخص النهائي قصيرًا وعمليًا ويصف ما تم العثور عليه فقط، دون نصائح قانونية موسعة.
+        applicability: "حقل summary في جميع أدوات الاستخراج الذري."
+        rationale: "هذه الأدوات تبني طبقة بيانات أولية وليست المخرج القانوني النهائي."

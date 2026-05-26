@@ -1,0 +1,40 @@
+profile_id: "sa.policies.hr_baseline"
+title: "حزمة خط الأساس لسياسات الموارد البشرية والأوصاف الوظيفية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "policies.generate_hr_policy"
+  - "policies.job_description"
+application_instructions: >
+  طبّق هذه القواعد على سياسات الموارد البشرية والأوصاف الوظيفية الموجهة للتوظيف والعمليات
+  البشرية في السعودية. افصل بين المحتوى الإلزامي وبين خيارات التطبيق الخاصة بالجهة،
+  وتجنب الصياغة التمييزية أو غير الواقعية تشغيليا.
+sources:
+  - source_id: "sa_hr_internal_standard"
+    title: "معيار Qanuni لصياغة الموارد البشرية"
+    authority: "خط الأساس الخاص بالموارد البشرية داخل Qanuni"
+    citation: "نسخة 1 من خط الأساس للموارد البشرية"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "hr-distinguish-mandatory-vs-company-choice"
+        priority: "mandatory"
+        directive: >
+          ميّز بين المحتوى الإلزامي للسياسة وبين مسارات الاعتماد أو النماذج أو خيارات التطبيق
+          الخاصة بالشركة.
+        applicability: "سياسات الموارد البشرية ومحتوى الأدلة التشغيلية."
+        rationale: "الفرق تحتاج إلى معرفة ما يجب وجوده وما يمكن تخصيصه."
+      - rule_id: "hr-avoid-discriminatory-wording"
+        priority: "mandatory"
+        directive: >
+          تجنب اللغة التمييزية أو الإقصائية أو شروط الفرز غير المبررة ما لم يقدم المستخدم
+          سببًا صريحًا ومشروعًا لذلك.
+        applicability: "السياسات ومعايير التوظيف والأوصاف الوظيفية."
+        rationale: "الصياغة المحايدة تخفف المخاطر القانونية والتشغيلية."
+      - rule_id: "hr-flag-organization-specific-gaps"
+        priority: "high"
+        directive: >
+          نبّه إلى التفاصيل التشغيلية التي تعتمد على البنية الداخلية للجهة، مثل جهات الاعتماد
+          أو ملاك التصعيد أو قنوات التظلم.
+        applicability: "السياسات والأوصاف الوظيفية التي ينقصها تفصيل الحوكمة الداخلية."
+        rationale: "المسودات القابلة لإعادة الاستخدام ما تزال تحتاج إلى استكمال خاص بكل جهة."

@@ -1,0 +1,40 @@
+profile_id: "sa.drafting.legal_language_baseline"
+title: "حزمة خط الأساس للصياغة القانونية العربية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "drafting.improve"
+  - "drafting.summarize"
+  - "drafting.simplify"
+application_instructions: >
+  اعتبر هذه القواعد خط الأساس المركزي لمهام الصياغة القانونية العربية. حافظ على
+  معنى المستخدم، وعزّز الوضوح حيثما أمكن، ولا تُدخل حقوقا أو التزامات قانونية جوهرية
+  لا يدعمها النص المصدر.
+sources:
+  - source_id: "arabic_legal_drafting_internal_standard"
+    title: "معيار Qanuni للصياغة القانونية العربية"
+    authority: "خط الأساس التحريري المنسق داخل Qanuni"
+    citation: "نسخة 1 من خط الأساس للصياغة العربية"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "drafting-preserve-material-meaning"
+        priority: "mandatory"
+        directive: >
+          حافظ على المعنى القانوني الجوهري للنص المصدر ما لم يطلب المستخدم صراحة إعادة صياغة
+          موضوعية أو يكن النص الأصلي متناقضًا في ذاته.
+        applicability: "مهام التحسين والتلخيص والتبسيط."
+        rationale: "المساعدة التحريرية يجب ألا تعيد كتابة المقصد القانوني خفية."
+      - rule_id: "drafting-flag-missing-context"
+        priority: "mandatory"
+        directive: >
+          إذا افتقر النص المصدر إلى سياق جوهري، فاذكر القيد وتجنب اختلاق الوقائع أو الحقوق
+          أو التواريخ أو الالتزامات.
+        applicability: "جميع مهام الصياغة التي تعتمد على مادة مصدر ناقصة."
+        rationale: "جودة الصياغة القانونية تعتمد على اكتمال الوقائع."
+      - rule_id: "drafting-prioritize-clarity-over-ornament"
+        priority: "high"
+        directive: >
+          فضّل الصياغة الدقيقة القابلة للتنفيذ على العبارات المتكلفة أو المتضخمة.
+        applicability: "التحسينات والتبسيطات."
+        rationale: "الصياغة الأنظف أسهل فهما وتفاوضا وتطبيقا."

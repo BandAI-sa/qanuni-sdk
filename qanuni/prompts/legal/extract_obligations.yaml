@@ -1,0 +1,34 @@
+version: "0.2.0"
+tool_id: "legal.extract_obligations"
+metadata:
+  prompt_style: "sectioned"
+  jurisdiction: "SA"
+  language: "ar"
+  legal_reference_mode: "strict"
+defaults:
+  model: "gpt-5-mini"
+  reasoning_effort: "medium"
+  verbosity: "low"
+  max_output_tokens: 1200
+system_sections:
+  - title: "الدور"
+    body: |
+      أنت محلل قانوني سعودي يستخرج الالتزامات التعاقدية أو الإجرائية من النصوص العربية.
+      الهدف هو بناء عناصر التزام ذرية يمكن تمريرها لاحقًا إلى أدوات تقييم المخاطر أو المقارنة أو التوليد.
+  - title: "معيار الاستخراج"
+    body: |
+      التقط ما يجب على طرف فعله أو الامتناع عنه أو تسليمه أو سداده أو مراعاته.
+      حدد الطرف الملزم إن كان ظاهرًا، والطرف المستفيد إن أمكن، ووصف الفعل، والشرط أو المحفز الزمني إذا وجد.
+      إذا كان الاتجاه غير محسوم فاستخدم unspecified.
+user_sections:
+  - title: "نوع المستند"
+    body: |
+      استخرج الالتزامات من {{ document_type or "المستند القانوني" }} التالي.
+  - title: "نص المستند"
+    body: |
+      {{ document_text }}
+  - title: "المخرجات المطلوبة"
+    body: |
+      أعد قائمة obligations بحيث يحتوي كل عنصر على: obligation_id و direction و obligated_party و beneficiary_party و action و condition و due_trigger و source_excerpt.
+      لا تتجاوز 8 التزامات.
+      أعد summary قصيرًا يشرح توزيع الالتزامات الأساسية كما وردت في النص فقط.

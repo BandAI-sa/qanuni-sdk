@@ -1,0 +1,118 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qanuni-sdk"
+dynamic = ["version"]
+description = "Arabic-first free legal intelligence SDK for Saudi-focused legal workflows."
+readme = { file = "README_PYPI.md", content-type = "text/markdown" }
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "BandAI" }
+]
+keywords = [
+  "legal",
+  "saudi",
+  "arabic",
+  "openai",
+  "sdk",
+  "compliance",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+dependencies = [
+  "Jinja2>=3.1.4",
+  "openai>=2.0.0,<3.0.0",
+  "pydantic>=2.8.2",
+  "pydantic-settings>=2.3.4",
+  "PyYAML>=6.0.2",
+]
+
+[project.optional-dependencies]
+pdf = [
+  "pdfplumber>=0.11.4",
+]
+cli = [
+  "rich>=13.7.1",
+  "typer>=0.12.3",
+]
+mcp = [
+  "mcp[cli]>=1.27.1,<2.0.0",
+]
+release = [
+  "build>=1.2.2.post1",
+  "twine>=6.1.0",
+]
+dev = [
+  "mypy>=1.11.1",
+  "pytest>=8.3.2",
+  "pytest-cov>=5.0.0",
+  "ruff>=0.6.1",
+  "build>=1.2.2.post1",
+  "twine>=6.1.0",
+  "mcp[cli]>=1.27.1,<2.0.0",
+]
+
+[project.scripts]
+qanuni-acceptance = "qanuni.acceptance.runner:main"
+qanuni-examples = "examples:main"
+qanuni-governance = "qanuni.governance.cli:main"
+qanuni-mcp-smoke = "qanuni.acceptance.mcp_smoke:main"
+qanuni-release-check = "release_preflight:main"
+qanuni-mcp-server = "qanuni.mcp.cli:main"
+
+[tool.hatch.build]
+include = [
+  "AcceptancePack.ipynb",
+  "CHANGELOG.md",
+  "FullReadme.md",
+  "LICENSE",
+  "examples/**/*.py",
+  "examples/**/*.md",
+  "examples.py",
+  "release_preflight.py",
+  "README_PYPI.md",
+  "qanuni/**/*.py",
+  "qanuni/acceptance_data/**/*.md",
+  "qanuni/governance/*.json",
+  "qanuni/observability/*.yaml",
+  "qanuni/py.typed",
+  "qanuni/legal_references_data/**/*.yaml",
+  "qanuni/prompts/**/*.yaml",
+  ".env.example",
+  "README.md",
+  "docs/guides/**/*.md",
+  "docs/*.md",
+  "docs/08_PROMPT_AUTHORING.md",
+]
+
+[tool.hatch.version]
+path = "qanuni/_version.py"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_configs = true

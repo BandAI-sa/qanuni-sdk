@@ -1,0 +1,36 @@
+profile_id: "sa.compliance.legal_notice_baseline"
+title: "حزمة خط الأساس لخطابات المطالبة والإشعارات القانونية"
+jurisdiction: "SA"
+mode: "strict"
+tool_ids:
+  - "compliance.demand_letter"
+application_instructions: >
+  استخدم هذه الحزمة كخط أساس لخطابات المطالبة والإشعارات القانونية. حافظ على نبرة
+  مهنية حازمة، واربط المطالبات بالوقائع المذكورة، وتجنب التهديدات غير المدعومة أو الادعاءات المبالغ فيها.
+sources:
+  - source_id: "sa_legal_notice_internal_standard"
+    title: "معيار Qanuni لصياغة الإشعارات القانونية"
+    authority: "خط الأساس الامتثالي المنسق داخل Qanuni"
+    citation: "نسخة 1 من خط الأساس للإشعارات القانونية"
+    source_type: "internal_standard"
+    jurisdiction: "SA"
+    rules:
+      - rule_id: "notice-state-basis-and-demand"
+        priority: "mandatory"
+        directive: >
+          اذكر الوقائع الأساسية، وأساس المطالبة، والعلاج المطلوب، ومهلة الرد في عناصر واضحة منفصلة.
+        applicability: "جميع مخرجات خطابات المطالبة."
+        rationale: "الإشعار يجب أن يكون واضحا وقابلا للاستخدام العملي."
+      - rule_id: "notice-avoid-unsupported-threats"
+        priority: "mandatory"
+        directive: >
+          لا تهدد بإجراءات جنائية أو تنظيمية أو مدنية ما لم تدعم الوقائع المقدمة من المستخدم
+          الإشارة إلى هذا المسار على الأقل بقدر عام.
+        applicability: "جميع عبارات التصعيد."
+        rationale: "التهديدات المبالغ فيها تضعف المصداقية وتخلق مخاطر إضافية."
+      - rule_id: "notice-preserve-rights-language"
+        priority: "high"
+        directive: >
+          استخدم صياغة تحفظ حقوق المرسل بلغة مهنية متزنة عندما يطلب المستخدم نبرة إشعار قانوني رسمي.
+        applicability: "خطابات الإشعار والتصعيد الرسمية."
+        rationale: "صياغة التحفظ تحفظ الموقف دون إفراط في الالتزام."

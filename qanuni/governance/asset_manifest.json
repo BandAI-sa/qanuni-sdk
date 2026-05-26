@@ -1,0 +1,379 @@
+{
+  "manifest_version": "1",
+  "generated_at": "2026-05-25T03:32:22.249152Z",
+  "fingerprint": "894fa060f6f19ec3a1b8154c0fbc10618345834e794204def7c6d3957bed2291",
+  "assets": [
+    {
+      "asset_kind": "prompt",
+      "relative_path": "compliance/demand_letter.yaml",
+      "asset_id": "compliance.demand_letter",
+      "version": "0.2.0",
+      "tool_ids": [
+        "compliance.demand_letter"
+      ],
+      "sha256": "7f0f5c7f92b81f925e577ac491cb43ebe4d8fc357050c1a116c7119401cb4673"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "compliance/pdpl_check.yaml",
+      "asset_id": "compliance.pdpl_check",
+      "version": "0.2.0",
+      "tool_ids": [
+        "compliance.pdpl_check"
+      ],
+      "sha256": "434400a2362f94de476ce9daadab01823566e9bfc42e81599b43379903194c01"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "compliance/privacy_policy.yaml",
+      "asset_id": "compliance.generate_privacy_policy",
+      "version": "0.2.0",
+      "tool_ids": [
+        "compliance.generate_privacy_policy"
+      ],
+      "sha256": "12ac11cd8105864f3ead3078ca7d50148029e9954f4f209775c6eb8e9416cc26"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "compliance/vat_check.yaml",
+      "asset_id": "compliance.vat_check",
+      "version": "0.2.0",
+      "tool_ids": [
+        "compliance.vat_check"
+      ],
+      "sha256": "985c07578bbdf937b60d18e514033eea338c556b82c9a73034596a476d3ec64a"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "contracts/gap_analysis.yaml",
+      "asset_id": "contracts.gap_analysis",
+      "version": "0.2.0",
+      "tool_ids": [
+        "contracts.gap_analysis"
+      ],
+      "sha256": "f9d811ecafcd08029d51a6c3d70560f2528325f77d009fd3161a050a9cadfee9"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "contracts/generate_mou.yaml",
+      "asset_id": "contracts.generate_mou",
+      "version": "0.2.0",
+      "tool_ids": [
+        "contracts.generate_mou"
+      ],
+      "sha256": "aa6ca60e14d4353c322f05ae0a873a261dc49a5903c23ba459e1e2443dfdaaa1"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "contracts/generate_nda.yaml",
+      "asset_id": "contracts.generate_nda",
+      "version": "0.2.0",
+      "tool_ids": [
+        "contracts.generate_nda"
+      ],
+      "sha256": "70b0b8e750a8404f6809175760a16a0b013da4c6818b56f732cee2123d28f9a3"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "contracts/risk_score.yaml",
+      "asset_id": "contracts.risk_score",
+      "version": "0.2.0",
+      "tool_ids": [
+        "contracts.risk_score"
+      ],
+      "sha256": "a482da22a28244ee9bb926798fcc2948b9b2b944c6639faed7c1a8f777a11b13"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "drafting/extract_clauses.yaml",
+      "asset_id": "drafting.extract_clauses",
+      "version": "0.2.0",
+      "tool_ids": [
+        "drafting.extract_clauses"
+      ],
+      "sha256": "ee7c86651cfa2fee1944ea3ba532818f3c80ab7ca5399eb0a2f534576773915b"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "drafting/improve.yaml",
+      "asset_id": "drafting.improve",
+      "version": "0.2.0",
+      "tool_ids": [
+        "drafting.improve"
+      ],
+      "sha256": "af363928be963292d11ce56438a7ca2b2f7beacbcbeaa5624036ff8849d16c82"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "drafting/simplify.yaml",
+      "asset_id": "drafting.simplify",
+      "version": "0.2.0",
+      "tool_ids": [
+        "drafting.simplify"
+      ],
+      "sha256": "c063bdfabbe05a0dce33ba29e1b3afd587123f36b12eafdf5d05cd9b120275e7"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "drafting/summarize.yaml",
+      "asset_id": "drafting.summarize",
+      "version": "0.2.0",
+      "tool_ids": [
+        "drafting.summarize"
+      ],
+      "sha256": "14b99c5d8a57891be90f50531a91a8032bc9f78453d999883a0cf28fcb5bb117"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "labor/generate_contract.yaml",
+      "asset_id": "labor.generate_contract",
+      "version": "0.2.0",
+      "tool_ids": [
+        "labor.generate_contract"
+      ],
+      "sha256": "1bd98585be8612966db237b266f531f081db727439c8ebdeb58af1eb53c4fd57"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "legal/classify_document_type.yaml",
+      "asset_id": "legal.classify_document_type",
+      "version": "0.2.0",
+      "tool_ids": [
+        "legal.classify_document_type"
+      ],
+      "sha256": "9be53dc3b9356b3ebcaebcf7e20f4f79d404b4595ab9d69800043f6df055e339"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "legal/extract_amounts.yaml",
+      "asset_id": "legal.extract_amounts",
+      "version": "0.2.0",
+      "tool_ids": [
+        "legal.extract_amounts"
+      ],
+      "sha256": "598c77528e7e719091b41d95773ad6bd7dcae9d980d947f90f185bd21d45bfd9"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "legal/extract_clauses.yaml",
+      "asset_id": "legal.extract_clauses",
+      "version": "0.2.0",
+      "tool_ids": [
+        "legal.extract_clauses"
+      ],
+      "sha256": "8846b5a5b177f6b57b1fcf4f8aea81fd4f1b408912dc8db195dea9d409791cb7"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "legal/extract_dates.yaml",
+      "asset_id": "legal.extract_dates",
+      "version": "0.2.0",
+      "tool_ids": [
+        "legal.extract_dates"
+      ],
+      "sha256": "b8381710e0a80ff33c449f1efdd43979aed9b0cccced87bde0e7ebda1c98392a"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "legal/extract_dispute_resolution.yaml",
+      "asset_id": "legal.extract_dispute_resolution",
+      "version": "0.2.0",
+      "tool_ids": [
+        "legal.extract_dispute_resolution"
+      ],
+      "sha256": "56d108518d838e89266ba4c4dda9f759eca6cf2d736f6db1453a01c0c323cfed"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "legal/extract_obligations.yaml",
+      "asset_id": "legal.extract_obligations",
+      "version": "0.2.0",
+      "tool_ids": [
+        "legal.extract_obligations"
+      ],
+      "sha256": "82bb5cadde03dc27eeae7091563a8d00f6648aace822c8928be91e968c21db82"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "legal/extract_parties.yaml",
+      "asset_id": "legal.extract_parties",
+      "version": "0.2.0",
+      "tool_ids": [
+        "legal.extract_parties"
+      ],
+      "sha256": "6504c5b82f49768196cf15fb0fc2e1dc9ac0f01775f4a4cf4ccdfb1b797a622c"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "legal/extract_termination_terms.yaml",
+      "asset_id": "legal.extract_termination_terms",
+      "version": "0.2.0",
+      "tool_ids": [
+        "legal.extract_termination_terms"
+      ],
+      "sha256": "a7f5e86156da9daa763725d29c0a4632c1ea11b309c5b9e24683fee976ce45e9"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "policies/hr_policy.yaml",
+      "asset_id": "policies.generate_hr_policy",
+      "version": "0.2.0",
+      "tool_ids": [
+        "policies.generate_hr_policy"
+      ],
+      "sha256": "fba61af885bfbae82842afb36a19ebae5be88a6584ddead89a4f841d96a0c161"
+    },
+    {
+      "asset_kind": "prompt",
+      "relative_path": "policies/job_description.yaml",
+      "asset_id": "policies.job_description",
+      "version": "0.2.0",
+      "tool_ids": [
+        "policies.job_description"
+      ],
+      "sha256": "79166fd816ca793ba9b1cb9e22f9f9ae45169dd287beabbe0c50b316b52e3ec3"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/compliance/legal_notice_baseline.yaml",
+      "asset_id": "sa.compliance.legal_notice_baseline",
+      "version": null,
+      "tool_ids": [
+        "compliance.demand_letter"
+      ],
+      "sha256": "d20afbc87b286c1752c242a9c98a60a0255a880025e22afba17dbe7b68e33be5"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/compliance/pdpl_baseline.yaml",
+      "asset_id": "sa.compliance.pdpl_baseline",
+      "version": null,
+      "tool_ids": [
+        "compliance.generate_privacy_policy"
+      ],
+      "sha256": "bb4891989e731e63a07ed52943991c8b7486b614dc4694fe1b894e1d876ada81"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/compliance/pdpl_check_baseline.yaml",
+      "asset_id": "sa.compliance.pdpl_check_baseline",
+      "version": null,
+      "tool_ids": [
+        "compliance.pdpl_check"
+      ],
+      "sha256": "63843eddc5fc60e3b68b90e22ac616b0c92c810b3420ccfd047ba44efef31a24"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/compliance/vat_check_baseline.yaml",
+      "asset_id": "sa.compliance.vat_check_baseline",
+      "version": null,
+      "tool_ids": [
+        "compliance.vat_check"
+      ],
+      "sha256": "f0da0451e5d836c2e3ed6e6b7dc96fc9c0be7f48dc9aaafeb9dc390c58c75c09"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/contracts/generation_baseline.yaml",
+      "asset_id": "sa.contracts.generation_baseline",
+      "version": null,
+      "tool_ids": [
+        "contracts.generate_nda",
+        "contracts.generate_mou"
+      ],
+      "sha256": "ff8814261c21b6ac70e640ac520a1529edb445615ab41b4d6e94a2eedf9a95ec"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/contracts/review_baseline.yaml",
+      "asset_id": "sa.contracts.review_baseline",
+      "version": null,
+      "tool_ids": [
+        "contracts.gap_analysis"
+      ],
+      "sha256": "39ca7c5ffac2aab5f50e41e8f614c6d11a7298ed1d35a0d29e3f7c89cb1389f3"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/contracts/risk_scoring_baseline.yaml",
+      "asset_id": "sa.contracts.risk_scoring_baseline",
+      "version": null,
+      "tool_ids": [
+        "contracts.risk_score"
+      ],
+      "sha256": "aa379bd693e532f7b812df5aebee00adea2b6495668eb974b2be7ef0b1b631ee"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/drafting/clause_extraction_baseline.yaml",
+      "asset_id": "sa.drafting.clause_extraction_baseline",
+      "version": null,
+      "tool_ids": [
+        "drafting.extract_clauses"
+      ],
+      "sha256": "02c125248e1e61d5e3b630e2296fcf9d2140130d1958c18539411e970119dec5"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/drafting/legal_language_baseline.yaml",
+      "asset_id": "sa.drafting.legal_language_baseline",
+      "version": null,
+      "tool_ids": [
+        "drafting.improve",
+        "drafting.summarize",
+        "drafting.simplify"
+      ],
+      "sha256": "0df55c0644b7c351807f750d6d0bdafca4642e1475dce15a4396d50c226baa7c"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/labor/contract_generation_baseline.yaml",
+      "asset_id": "sa.labor.contract_generation_baseline",
+      "version": null,
+      "tool_ids": [
+        "labor.generate_contract"
+      ],
+      "sha256": "83805b86fdee10cf98ef4a3a6f426c4658981553633ec7c6c5dab6eec2486be9"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/labor/employment_baseline.yaml",
+      "asset_id": "sa.labor.employment_baseline",
+      "version": null,
+      "tool_ids": [
+        "labor.end_of_service",
+        "labor.probation_check"
+      ],
+      "sha256": "41658788fa4fdbaf4fe3413f2634e6f367d1bcf877860e56112875182efed657"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/legal/extraction_baseline.yaml",
+      "asset_id": "sa.legal.extraction_baseline",
+      "version": null,
+      "tool_ids": [
+        "legal.extract_clauses",
+        "legal.extract_parties",
+        "legal.extract_dates",
+        "legal.extract_amounts",
+        "legal.extract_obligations",
+        "legal.extract_termination_terms",
+        "legal.extract_dispute_resolution",
+        "legal.classify_document_type"
+      ],
+      "sha256": "e656e3976ad8813986796b5c0f7370acef8cc6dad4857834c1e89d9516fb04fe"
+    },
+    {
+      "asset_kind": "legal_reference",
+      "relative_path": "sa/policies/hr_baseline.yaml",
+      "asset_id": "sa.policies.hr_baseline",
+      "version": null,
+      "tool_ids": [
+        "policies.generate_hr_policy",
+        "policies.job_description"
+      ],
+      "sha256": "1c4909ffb77f1198f66c99a1c273cc999b2665f60606ebf814139167837008ae"
+    }
+  ]
+}

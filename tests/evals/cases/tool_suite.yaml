@@ -1,0 +1,454 @@
+cases:
+  - case_id: labor_end_of_service
+    surface_id: labor.end_of_service
+    legal_basis:
+      - sa/labor/employment_baseline.yaml
+    payload:
+      monthly_salary: 12000
+      years_of_service: 7.5
+      termination_reason: resignation
+      contract_type: indefinite
+    expected:
+      number_at_least:
+        total_amount: 1
+      list_length_at_least:
+        calculation_breakdown: 1
+      path_not_empty:
+        - legal_explanation
+        - legal_reference_rule_ids
+
+  - case_id: labor_probation_check
+    surface_id: labor.probation_check
+    legal_basis:
+      - sa/labor/employment_baseline.yaml
+    payload:
+      probation_days: 120
+      extension_in_writing: false
+      contract_type: indefinite
+    expected:
+      path_equals:
+        is_legal: false
+        max_allowed_days: 90
+      list_length_at_least:
+        violations: 1
+      path_not_empty:
+        - legal_reference_rule_ids
+
+  - case_id: labor_generate_contract
+    surface_id: labor.generate_contract
+    legal_basis:
+      - sa/labor/contract_generation_baseline.yaml
+    payload:
+      employer_name: شركة ألف
+      employee_name: محمد أحمد
+      job_title: مهندس برمجيات
+      monthly_salary: 14000
+      contract_type: indefinite
+      work_location: الرياض
+      benefits:
+        - تأمين طبي
+        - بدل نقل
+    expected:
+      list_length_at_least:
+        included_clauses: 3
+        compliance_notes: 1
+      path_not_empty:
+        - contract_text
+        - legal_reference_rule_ids
+
+  - case_id: legal_extract_clauses
+    surface_id: legal.extract_clauses
+    legal_basis:
+      - sa/legal/extraction_baseline.yaml
+    payload:
+      document_text: |
+        يلتزم الطرف الثاني بتنفيذ الأعمال.
+        يتم السداد لاحقًا وفق الفاتورة.
+        يجوز إنهاء العقد عند الحاجة.
+      document_type: عقد خدمات
+    expected:
+      list_length_at_least:
+        clauses: 2
+        extracted_clause_types: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: legal_extract_parties
+    surface_id: legal.extract_parties
+    legal_basis:
+      - sa/legal/extraction_baseline.yaml
+    payload:
+      document_text: |
+        أبرمت شركة ألف هذا العقد مع شركة باء لتقديم خدمات تقنية.
+      document_type: عقد خدمات
+    expected:
+      list_length_at_least:
+        parties: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: legal_extract_dates
+    surface_id: legal.extract_dates
+    legal_basis:
+      - sa/legal/extraction_baseline.yaml
+    payload:
+      document_text: |
+        يبدأ العقد في 1 يناير 2026 وينتهي في 31 ديسمبر 2026.
+      document_type: عقد خدمات
+    expected:
+      list_length_at_least:
+        dates: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: legal_extract_amounts
+    surface_id: legal.extract_amounts
+    legal_basis:
+      - sa/legal/extraction_baseline.yaml
+    payload:
+      document_text: |
+        يلتزم الطرف الأول بسداد مبلغ 85000 ريال خلال 15 يومًا من الفاتورة.
+      document_type: عقد خدمات
+    expected:
+      list_length_at_least:
+        amounts: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: legal_extract_obligations
+    surface_id: legal.extract_obligations
+    legal_basis:
+      - sa/legal/extraction_baseline.yaml
+    payload:
+      document_text: |
+        يلتزم المورد بتقديم الخدمة ويلتزم العميل بالسداد خلال المدة المتفق عليها.
+      document_type: عقد خدمات
+    expected:
+      list_length_at_least:
+        obligations: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: legal_extract_termination_terms
+    surface_id: legal.extract_termination_terms
+    legal_basis:
+      - sa/legal/extraction_baseline.yaml
+    payload:
+      document_text: |
+        يجوز لأي طرف إنهاء العقد بعد إشعار مدته ثلاثون يومًا.
+      document_type: عقد خدمات
+    expected:
+      list_length_at_least:
+        termination_terms: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: legal_extract_dispute_resolution
+    surface_id: legal.extract_dispute_resolution
+    legal_basis:
+      - sa/legal/extraction_baseline.yaml
+    payload:
+      document_text: |
+        في حال النزاع تتم التسوية وديًا أولًا ثم يحال النزاع إلى التحكيم في الرياض.
+      document_type: عقد خدمات
+    expected:
+      list_length_at_least:
+        dispute_resolution_terms: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: legal_classify_document_type
+    surface_id: legal.classify_document_type
+    legal_basis:
+      - sa/legal/extraction_baseline.yaml
+    payload:
+      document_text: |
+        يلتزم الطرف الثاني بتنفيذ أعمال الصيانة ويستحق المقابل المالي وفق الفاتورة.
+      document_type: عقد خدمات
+    expected:
+      path_not_empty:
+        - primary_document_type
+        - confidence_band
+        - summary
+        - legal_reference_rule_ids
+      list_length_at_least:
+        alternative_document_types: 1
+
+  - case_id: contracts_gap_analysis
+    surface_id: contracts.gap_analysis
+    legal_basis:
+      - sa/contracts/review_baseline.yaml
+    payload:
+      contract_text: |
+        يلتزم الطرف الثاني بتنفيذ الأعمال ويتم السداد لاحقًا ويجوز إنهاء العقد عند الحاجة.
+      contract_type: service_agreement
+    expected:
+      path_equals:
+        overall_risk_level: high
+      list_length_at_least:
+        gaps: 1
+        missing_mandatory_clauses: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: contracts_risk_score
+    surface_id: contracts.risk_score
+    legal_basis:
+      - sa/contracts/risk_scoring_baseline.yaml
+    payload:
+      contract_text: |
+        يلتزم الطرف الثاني بتنفيذ الأعمال ويتم السداد لاحقًا ويجوز إنهاء العقد عند الحاجة.
+      contract_type: service_agreement
+    expected:
+      path_equals:
+        risk_level: high
+      number_at_least:
+        risk_score: 1
+      list_length_at_least:
+        primary_risk_drivers: 1
+        mitigation_priorities: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: contracts_generate_nda
+    surface_id: contracts.generate_nda
+    legal_basis:
+      - sa/contracts/generation_baseline.yaml
+    payload:
+      nda_type: mutual
+      disclosing_party: شركة ألف
+      receiving_party: شركة باء
+      purpose: دراسة شراكة تشغيلية
+      confidentiality_period_years: 3
+    expected:
+      path_not_empty:
+        - nda_text
+        - legal_reference_rule_ids
+      list_length_at_least:
+        key_clauses_summary: 1
+        legal_notes: 1
+
+  - case_id: contracts_generate_mou
+    surface_id: contracts.generate_mou
+    legal_basis:
+      - sa/contracts/generation_baseline.yaml
+    payload:
+      party_a: شركة ألف
+      party_b: شركة باء
+      objectives:
+        - دراسة التعاون التقني
+        - تحديد مسار الشراكة
+      responsibilities:
+        - تقديم المعلومات الفنية
+        - إعداد نموذج التشغيل
+    expected:
+      path_not_empty:
+        - mou_text
+        - legal_reference_rule_ids
+      list_length_at_least:
+        binding_clauses: 1
+        caution_notes: 1
+
+  - case_id: compliance_generate_privacy_policy
+    surface_id: compliance.generate_privacy_policy
+    legal_basis:
+      - sa/compliance/pdpl_baseline.yaml
+    payload:
+      company_name: شركة ألف
+      service_type: منصة تقنية
+      data_collected:
+        - الاسم
+        - البريد الإلكتروني
+      data_purposes:
+        - إنشاء الحساب
+        - تقديم الخدمة
+      third_party_sharing: true
+      international_transfers: false
+    expected:
+      path_not_empty:
+        - policy_text
+        - legal_reference_rule_ids
+      number_at_least:
+        pdpl_compliance_score: 1
+      list_length_at_least:
+        sections_included: 1
+        legal_notes: 1
+
+  - case_id: compliance_pdpl_check
+    surface_id: compliance.pdpl_check
+    legal_basis:
+      - sa/compliance/pdpl_check_baseline.yaml
+    payload:
+      document_text: |
+        نجمع بيانات العملاء ونشارك بعض البيانات مع مزودي خدمة خارجيين.
+      processing_context: تطبيق توصيل
+      cross_border_transfers: true
+    expected:
+      number_at_least:
+        compliance_score: 1
+      list_length_at_least:
+        gaps: 1
+        required_actions: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: compliance_vat_check
+    surface_id: compliance.vat_check
+    legal_basis:
+      - sa/compliance/vat_check_baseline.yaml
+    payload:
+      document_text: |
+        يسدد العميل مبلغ 100000 ريال ولا يوضح النص ما إذا كان المقابل شاملًا لضريبة القيمة المضافة.
+      transaction_type: خدمات
+      vat_rate: 15
+    expected:
+      number_at_least:
+        compliance_score: 1
+      list_length_at_least:
+        gaps: 1
+        required_actions: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: compliance_demand_letter
+    surface_id: compliance.demand_letter
+    legal_basis:
+      - sa/compliance/legal_notice_baseline.yaml
+    payload:
+      sender_name: شركة ألف
+      recipient_name: شركة باء
+      claim_type: مستحقات تعاقدية
+      claim_amount: 85000
+      incident_description: تأخر في سداد مستحقات عقد خدمات تقنية.
+      deadline_days: 7
+      threat_of_action: سيتم اتخاذ الإجراءات القانونية المناسبة عند عدم السداد.
+    expected:
+      path_not_empty:
+        - letter_text
+        - legal_reference_rule_ids
+      list_length_at_least:
+        legal_notice_elements: 1
+        strategic_notes: 1
+
+  - case_id: drafting_extract_clauses
+    surface_id: drafting.extract_clauses
+    legal_basis:
+      - sa/drafting/clause_extraction_baseline.yaml
+    payload:
+      document_text: |
+        يلتزم الطرف الثاني بتنفيذ الأعمال.
+        يتم السداد لاحقًا وفق الفاتورة.
+      document_type: عقد خدمات
+    expected:
+      list_length_at_least:
+        clauses: 1
+        extracted_clause_types: 1
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+
+  - case_id: drafting_improve
+    surface_id: drafting.improve
+    legal_basis:
+      - sa/drafting/legal_language_baseline.yaml
+    payload:
+      original_text: يدفع الطرف الأول عند الإنجاز.
+      improvement_goals:
+        - precision
+        - clarity
+        - formality
+      context: service agreement
+    expected:
+      path_not_empty:
+        - improved_text
+        - overall_assessment
+        - legal_reference_rule_ids
+      list_length_at_least:
+        changes: 1
+      number_at_least:
+        improvement_score: 1
+
+  - case_id: drafting_summarize
+    surface_id: drafting.summarize
+    legal_basis:
+      - sa/drafting/legal_language_baseline.yaml
+    payload:
+      document_text: |
+        يتعهد الطرف الأول بتقديم الخدمات التقنية ويلتزم الطرف الثاني بالسداد خلال خمسة عشر يومًا.
+      summary_length: executive
+    expected:
+      path_not_empty:
+        - summary
+        - legal_reference_rule_ids
+      list_length_at_least:
+        key_obligations: 1
+        key_rights: 1
+
+  - case_id: drafting_simplify
+    surface_id: drafting.simplify
+    legal_basis:
+      - sa/drafting/legal_language_baseline.yaml
+    payload:
+      legal_text: يلتزم المتعاقد بتنفيذ الالتزامات الناشئة عن العقد وفقًا لما يقتضيه حسن النية.
+      target_audience: general_public
+    expected:
+      path_not_empty:
+        - simplified_text
+        - legal_reference_rule_ids
+      list_length_at_least:
+        preserved_terms: 1
+        reader_warnings: 1
+
+  - case_id: policies_generate_hr_policy
+    surface_id: policies.generate_hr_policy
+    legal_basis:
+      - sa/policies/hr_baseline.yaml
+    payload:
+      policy_type: العمل عن بعد
+      company_name: شركة ألف
+      industry: تقنية
+      employee_count: 120
+      custom_requirements:
+        - تحديد ساعات التوفر
+    expected:
+      path_not_empty:
+        - policy_text
+        - legal_reference_rule_ids
+      path_equals:
+        mandatory_inclusions_met: true
+      list_length_at_least:
+        saudi_law_compliance_notes: 1
+        recommended_additions: 1
+
+  - case_id: policies_job_description
+    surface_id: policies.job_description
+    legal_basis:
+      - sa/policies/hr_baseline.yaml
+    payload:
+      job_title: محلل أعمال
+      department: العمليات
+      required_experience_years: 3
+      required_education: بكالوريوس إدارة أعمال
+      key_responsibilities:
+        - تحليل المتطلبات
+      required_skills:
+        - التواصل
+      saudization_preferred: true
+      salary_range: 12000-16000
+    expected:
+      path_not_empty:
+        - job_description_text
+        - legal_reference_rule_ids
+      list_length_at_least:
+        legal_compliance_notes: 1

@@ -1,0 +1,31 @@
+models:
+  gpt-5:
+    input_cost_per_1m_usd: 1.25
+    output_cost_per_1m_usd: 10.00
+  gpt-5-mini:
+    input_cost_per_1m_usd: 0.25
+    output_cost_per_1m_usd: 2.00
+  gpt-5-nano:
+    input_cost_per_1m_usd: 0.05
+    output_cost_per_1m_usd: 0.40
+  gpt-4.1:
+    input_cost_per_1m_usd: 2.00
+    output_cost_per_1m_usd: 8.00
+  gpt-4.1-mini:
+    input_cost_per_1m_usd: 0.40
+    output_cost_per_1m_usd: 1.60
+  gpt-4.1-nano:
+    input_cost_per_1m_usd: 0.10
+    output_cost_per_1m_usd: 0.40
+  gpt-4o:
+    input_cost_per_1m_usd: 2.50
+    output_cost_per_1m_usd: 10.00
+  gpt-4o-mini:
+    input_cost_per_1m_usd: 0.15
+    output_cost_per_1m_usd: 0.60
+  o3:
+    input_cost_per_1m_usd: 2.00
+    output_cost_per_1m_usd: 8.00
+  o4-mini:
+    input_cost_per_1m_usd: 1.10
+    output_cost_per_1m_usd: 4.40

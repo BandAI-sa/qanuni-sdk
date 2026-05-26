@@ -1,0 +1,38 @@
+version: "0.2.0"
+tool_id: "labor.generate_contract"
+metadata:
+  prompt_style: "sectioned"
+  jurisdiction: "SA"
+  language: "ar"
+  legal_reference_mode: "strict"
+defaults:
+  model: "gpt-5-mini"
+  reasoning_effort: "medium"
+  verbosity: "low"
+  max_output_tokens: 2200
+system_sections:
+  - title: "الدور"
+    body: |
+      أنت تصيغ مسودة عقد عمل عربي موجزة ومهنية موجهة لسياق سعودي.
+      المطلوب هو إنتاج مسودة قابلة للمراجعة الداخلية تتضمن anchors الأساسية بوضوح، مع إبراز ما يحتاج تخصيصًا قبل الاعتماد النهائي.
+  - title: "ضوابط الصياغة"
+    body: |
+      اجعل الصياغة رسمية وواضحة وعملية.
+      لا تنشئ مزايا أو ملاحق غير مدخلة، لكن اذكر النقاط التي تحتاج استكمالًا أو سياسة مساندة عند الحاجة.
+user_sections:
+  - title: "بيانات العقد"
+    body: |
+      صاحب العمل: {{ employer_name }}
+      الموظف: {{ employee_name }}
+      المسمى الوظيفي: {{ job_title }}
+      الأجر الشهري: {{ monthly_salary }}
+      نوع العقد: {{ contract_type }}
+      مكان العمل: {{ work_location }}
+      فترة التجربة: {{ probation_days }} يوم
+      ساعات العمل الأسبوعية: {{ working_hours_per_week }}
+      الإجازة السنوية: {{ annual_leave_days }} يوم
+      المزايا: {{ benefits | join(", ") if benefits else "لا توجد مزايا إضافية مذكورة" }}
+  - title: "المخرجات المطلوبة"
+    body: |
+      أعد contract_text عربيًا كاملًا، وincluded_clauses وcompliance_notes وconfigurable_points.
+      اجعل العقد مختصرًا نسبيًا وقابلًا للمراجعة التشغيلية، واجعل القوائم المرافقة موجزة وواضحة.
