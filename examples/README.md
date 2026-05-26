@@ -86,6 +86,30 @@ python examples/example_09_mcp_external_smoke.py --mode mocked
 
 Use `mocked` first so you can validate the surface without burning quota.
 
+## Surface Coverage Matrix
+
+This matrix is useful when you already know which SDK surface you want to inspect and just need the matching runnable script.
+
+| Example | Main surface coverage |
+|---|---|
+| `example_00_environment_and_catalog.py` | package import path, shipped tool catalog, agent capability catalog |
+| `example_01_labor_deterministic.py` | `labor.end_of_service`, `labor.probation_check` |
+| `example_02_atomic_legal_extraction.py` | `legal.classify_document_type`, `legal.extract_*` suite |
+| `example_03_contract_review_workflow.py` | `workflow.contract_review` |
+| `example_04_employment_review_workflow.py` | `workflow.employment_review` |
+| `example_05_privacy_compliance_workflow.py` | `workflow.privacy_compliance_review` |
+| `example_06_agent_contract_dispute_notice.py` | `agent.plan`, `agent.run`, contract-review plus pre-litigation orchestration |
+| `example_07_cache_and_observability.py` | selective cache policy, observability recorder, persisted logs |
+| `example_08_faulty_inputs_and_error_codes.py` | structured `QanuniError` handling across tool, workflow, and agent layers |
+| `example_09_mcp_external_smoke.py` | external MCP server, curated MCP tools, MCP resources, audit artifacts |
+| `example_10_full_acceptance_report.py` | acceptance-pack orchestration and consolidated reporting |
+| `example_11_legal_task_easy_contract_review.py` | agent contract-review-only scenario |
+| `example_12_legal_task_medium_commercial_claim.py` | agent contract-dispute-notice scenario |
+| `example_13_legal_task_medium_employment_rights.py` | agent employment-rights scenario |
+| `example_14_legal_task_hard_privacy_remediation.py` | agent privacy-remediation scenario |
+| `example_15_legal_task_hard_policy_creation_review.py` | agent policy-creation-review scenario |
+| `example_16_legal_task_complex_missing_info_recovery.py` | agent stopping rules, missing-input recovery, second-pass completion |
+
 ## Agent Legal Task Scenarios
 
 If your real goal is to evaluate the **legal agent itself** rather than the raw SDK surface,
